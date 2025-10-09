@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+header {
+    background-color: black;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; */
+}
+
+header nav {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav a{
+    color: burlywood;
+    font-size: 2rem;
+}
+
+main {
+    background-color: brown;
+    min-height: 100vh;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+section{
+    background-color: blue;
+    width: 20vw;
+    font-size: 14px;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+section p {
+    font-size: 1.5em;
+}
+
+#image{
+    background-image: url("https://production.autoforce.com/uploads/version/profile_image/10711/model_main_webp_comprar-intense-plus-1-6-mt_33dc26131c.png.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 20vh;
+}

@@ -1,0 +1,46 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+*{
+    font-family: "Barriecito";
+    font-size:xx-large;
+}
+
+#vacio{
+    list-style-type: none;
+}
+
+#circulorelleno{
+    list-style-type: disc;
+}
+
+#circulovacio {
+    list-style-type: circle;
+}
+
+#cuadrado{
+    list-style-type: square;
+}
+
+#decimal{
+    list-style-type: decimal;
+}
+
+#romanominuscula{
+    list-style-type: lower-roman;
+}
+
+#romanomayuscula{
+    list-style-type: upper-roman;
+}
+
+#letrasminusculas{
+    list-style-type: lower-alpha;
+}
+
+#letrasmayusculas{
+    list-style-type: upper-alpha;
+}

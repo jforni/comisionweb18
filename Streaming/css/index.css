@@ -1,0 +1,10 @@
+.portada {
+    transition: 1s;
+}
+
+.portada:hover {
+    width: 25%;
+    box-shadow: 10px 5px 5px black;
+    border-radius: 10px;
+}
+

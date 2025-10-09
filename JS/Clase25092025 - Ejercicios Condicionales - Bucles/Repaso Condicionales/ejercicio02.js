@@ -1,0 +1,1 @@
+/* 2. **Ejercicio 2:** Dada una edad en años, verifica si la persona es mayor de edad (18 años o más).  */

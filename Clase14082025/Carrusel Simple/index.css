@@ -1,0 +1,26 @@
+#sliderContainer {
+    display: flex;
+    width: 50%;
+    height: 50vh;
+    overflow-x:scroll;
+    scroll-snap-type: x mandatory; /* se utiliza para controlar cómo se comporta el desplazamiento dentro de un elemento contenedor, específicamente para el desplazamiento horizontal. */
+}
+
+#sliderContainer .imgContainer{
+    flex: 0 0 100%;
+    width: 100%;
+    object-fit: cover;
+    scroll-snap-align: center;
+}
+
+.imgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.imgContainer img{
+    max-width: 100%;
+}

@@ -1,0 +1,320 @@
+
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva de CSS Grid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals & Teal Accent -->
+    <!-- Application Structure Plan: He diseñado esta aplicación como una guía interactiva de una sola página. En lugar de una presentación lineal, un menú de navegación lateral fijo (sidebar) permite a los usuarios saltar a cualquier sección de interés, lo que facilita tanto el aprendizaje secuencial como el uso de la página como referencia rápida. La sección principal de contenido presenta los conceptos teóricos y, crucialmente, ejemplos prácticos interactivos. Para estos ejemplos, utilicé un diseño de dos paneles que muestra el código HTML/CSS a la izquierda y una vista previa en vivo y renderizada a la derecha. Esta estructura fue elegida porque el aprendizaje del código es más efectivo cuando los estudiantes pueden ver el impacto de sus cambios en tiempo real, reforzando la conexión entre el código y el resultado visual de una manera que las diapositivas estáticas no pueden lograr. -->
+    <!-- Visualization & Content Choices: La información del reporte se ha estructurado en secciones temáticas. Para los conceptos teóricos como 'El Vocabulario de Grid', he creado diagramas visuales usando divs con estilos de Tailwind CSS (Goal: Organizar, Method: Diagrama HTML/CSS, Interaction: Ayuda visual estática) para representar el contenedor, los ítems y las líneas de la grilla, evitando así el uso de imágenes o SVG. Para los 'Ejemplos Funcionales', el objetivo es la demostración práctica (Goal: Comparar/Informar). Para ello, se utiliza un componente de vista previa en vivo (Method: Panel dividido con código y renderizado en vivo, Interaction: El panel de vista previa responde en tiempo real al cambio de tamaño de la ventana del navegador, permitiendo a los usuarios ver la fluidez de las unidades 'fr' en acción). Esto proporciona una experiencia de aprendizaje mucho más rica y directa. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .section-target {
+            scroll-margin-top: 4rem;
+        }
+        .nav-link.active {
+            background-color: #14B8A6;
+            color: white;
+        }
+        .live-preview {
+            border: 2px dashed #e5e7eb;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+        }
+        .code-block .comment { color: #a0aec0; }
+        .code-block .property { color: #90cdf4; }
+        .code-block .value { color: #faf089; }
+        .code-block .selector { color: #f6ad55; }
+        .code-block .tag { color: #f687b3; }
+        .code-block .attribute { color: #9f7aea; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="flex">
+        <aside class="sticky top-0 h-screen w-64 bg-white shadow-lg p-6 hidden md:block">
+            <h1 class="text-2xl font-bold text-teal-600 mb-8">CSS Grid</h1>
+            <nav id="desktop-nav" class="space-y-2">
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-4 sm:p-6 md:p-10">
+            
+            <header class="bg-teal-500 text-white p-8 rounded-xl shadow-2xl mb-12 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">Descubriendo CSS Grid Layout</h1>
+                <p class="text-xl text-teal-100">¡Basta de sufrir con la maquetación!</p>
+            </header>
+
+            <div id="content-sections">
+                
+                <section id="introduccion" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">El "Antes" de Grid - ¿Por qué lo necesitamos?</h2>
+                    <div class="bg-white p-8 rounded-lg shadow-md space-y-4 text-lg">
+                        <p>Hasta hace no mucho, posicionar elementos en una página era una de las tareas más frustrantes de CSS. Los métodos antiguos como <code class="font-mono text-sm bg-gray-200 p-1 rounded">float</code> o <code class="font-mono text-sm bg-gray-200 p-1 rounded">position</code> eran complejos e impredecibles.</p>
+                        <p><strong class="text-teal-600">Llegó Flexbox</strong>, una mejora increíble, pero está diseñado para maquetar en una sola dimensión (una fila o una columna). Crear estructuras complejas de varias dimensiones podía volverse muy laborioso.</p>
+                        <p>Precisábamos una herramienta más potente para crear estructuras de dos dimensiones (filas y columnas) de forma rápida y sencilla. <strong class="text-teal-600">Así nace CSS Grid.</strong></p>
+                    </div>
+                </section>
+
+                <section id="que-es" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">¿Qué es CSS Grid? - El Concepto Clave</h2>
+                    <div class="bg-white p-8 rounded-lg shadow-md space-y-4 text-lg">
+                        <p>Piensen en Grid como una hoja de cálculo o un tablero de ajedrez directamente en su CSS. Es un <strong class="text-teal-600">sistema de maquetación bidimensional</strong>: nos permite controlar filas y columnas al mismo tiempo.</p>
+                        <p>Toma la filosofía de Flexbox, por lo que muchos conceptos resultarán familiares. Además, tiene <strong class="text-teal-600">soporte total</strong> en todos los navegadores modernos desde 2017. ¡Úsenla sin miedo!</p>
+                    </div>
+                </section>
+
+                <section id="vocabulario" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">El Vocabulario de Grid</h2>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <p class="text-lg mb-6">Para dominar Grid, primero tenemos que conocer sus partes:</p>
+                        <div class="border-2 border-dashed border-teal-300 p-4 rounded-lg bg-teal-50">
+                            <div class="p-2 bg-teal-100 rounded text-center font-bold text-teal-800">Contenedor (Grid Container)</div>
+                            <div class="grid grid-cols-3 grid-rows-2 gap-2 mt-2">
+                                <div class="bg-teal-500 text-white p-4 rounded text-center flex items-center justify-center">Ítem</div>
+                                <div class="bg-teal-500 text-white p-4 rounded text-center flex items-center justify-center col-span-2">Área (Grid Area)</div>
+                                <div class="bg-teal-500 text-white p-4 rounded text-center flex items-center justify-center">Ítem</div>
+                                <div class="bg-teal-500 text-white p-4 rounded text-center flex items-center justify-center">Celda</div>
+                                <div class="bg-teal-500 text-white p-4 rounded text-center flex items-center justify-center">Ítem</div>
+                            </div>
+                        </div>
+                        <ul class="list-disc list-inside mt-6 space-y-2 text-lg">
+                            <li><strong class="text-teal-600">Contenedor:</strong> El elemento padre que tendrá el `display: grid`.</li>
+                            <li><strong class="text-teal-600">Ítem:</strong> Cada uno de los hijos directos del contenedor.</li>
+                            <li><strong class="text-teal-600">Celda:</strong> La unidad más pequeña de la grilla.</li>
+                            <li><strong class="text-teal-600">Área:</strong> Un conjunto de celdas que forman un rectángulo.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="activar" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">¡Manos a la Obra! - Cómo activar Grid</h2>
+                     <div class="bg-white p-8 rounded-lg shadow-md text-lg">
+                        <p>Para empezar a usar Grid, solo necesitamos aplicar <code class="font-mono text-sm bg-gray-200 p-1 rounded">display: grid</code> al elemento contenedor.</p>
+                        <div class="mt-6 grid md:grid-cols-2 gap-6">
+                           <div>
+                                <h3 class="font-bold mb-2">HTML Básico</h3>
+                                <div class="code-block">
+<pre><code><span class="tag">&lt;div</span> <span class="attribute">class=</span><span class="value">"grid"</span><span class="tag">&gt;</span> <span class="comment">&lt;!-- Contenedor --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute">class=</span><span class="value">"item"</span><span class="tag">&gt;</span>Item 1<span class="tag">&lt;/div&gt;</span> <span class="comment">&lt;!-- Ítem --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute">class=</span><span class="value">"item"</span><span class="tag">&gt;</span>Item 2<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute">class=</span><span class="value">"item"</span><span class="tag">&gt;</span>Item 3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+                                </div>
+                           </div>
+                           <div>
+                                <h3 class="font-bold mb-2">CSS Mágico</h3>
+                                <div class="code-block">
+<pre><code><span class="selector">.grid</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+}</code></pre>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ejemplos" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">Ejemplos Funcionales</h2>
+
+                    <div class="space-y-12">
+                        <div class="bg-white p-8 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-teal-700">1. Grilla con Píxeles (Estática)</h3>
+                            <p class="mb-6 text-lg">Creamos una grilla de 2x2 con tamaños fijos. Esta grilla no se adaptará al tamaño de la pantalla.</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold mb-2">Código</h4>
+                                    <div class="code-block">
+<pre><code><span class="selector">.grid-container</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">50px 300px</span>;
+  <span class="property">grid-template-rows</span>: <span class="value">200px 75px</span>;
+}</code></pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Resultado en Vivo</h4>
+                                    <div class="live-preview p-4 rounded-lg h-full">
+                                        <div style="display: grid; grid-template-columns: 50px 300px; grid-template-rows: 200px 75px;">
+                                            <div class="bg-indigo-400 text-white p-2 flex items-center justify-center rounded">1</div>
+                                            <div class="bg-indigo-400 text-white p-2 flex items-center justify-center rounded">2</div>
+                                            <div class="bg-indigo-400 text-white p-2 flex items-center justify-center rounded">3</div>
+                                            <div class="bg-indigo-400 text-white p-2 flex items-center justify-center rounded">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-teal-700">2. La Unidad `fr` (Flexible)</h3>
+                            <p class="mb-6 text-lg">La unidad <code class="font-mono text-sm bg-gray-200 p-1 rounded">fr</code> (fracción) divide el espacio disponible proporcionalmente. ¡Prueba a redimensionar la ventana para ver su magia!</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold mb-2">Código</h4>
+                                    <div class="code-block">
+<pre><code><span class="selector">.grid-container</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr</span>;
+  <span class="property">grid-template-rows</span>: <span class="value">2fr 1fr</span>;
+  <span class="property">height</span>: <span class="value">300px</span>;
+}</code></pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Resultado en Vivo</h4>
+                                    <div class="live-preview p-4 rounded-lg h-full">
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 2fr 1fr; height: 300px;">
+                                            <div class="bg-green-500 text-white p-2 flex items-center justify-center rounded">1</div>
+                                            <div class="bg-green-500 text-white p-2 flex items-center justify-center rounded">2</div>
+                                            <div class="bg-green-500 text-white p-2 flex items-center justify-center rounded">3</div>
+                                            <div class="bg-green-500 text-white p-2 flex items-center justify-center rounded">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-teal-700">3. Función `repeat()` y Propiedad `gap`</h3>
+                            <p class="mb-6 text-lg">Simplificamos la creación de múltiples columnas con <code class="font-mono text-sm bg-gray-200 p-1 rounded">repeat()</code> y añadimos espacio entre celdas con <code class="font-mono text-sm bg-gray-200 p-1 rounded">gap</code>.</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold mb-2">Código</h4>
+                                    <div class="code-block">
+<pre><code><span class="selector">.grid-container</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>;
+  <span class="property">grid-auto-rows</span>: <span class="value">100px</span>;
+  <span class="property">gap</span>: <span class="value">10px</span>;
+}</code></pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Resultado en Vivo</h4>
+                                    <div class="live-preview p-4 rounded-lg h-full">
+                                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 100px; gap: 10px;">
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">1</div>
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">2</div>
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">3</div>
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">4</div>
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">5</div>
+                                            <div class="bg-orange-500 text-white p-2 flex text-2xl items-center justify-center rounded">6</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="futuro" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">Un Vistazo al Futuro</h2>
+                    <div class="bg-white p-8 rounded-lg shadow-md text-lg">
+                        <p>Hoy vimos las bases, ¡pero el universo de Grid es enorme! Aquí hay más conceptos por explorar:</p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-teal-600">minmax()</h4>
+                                <p>Define tamaños mínimos y máximos para las celdas, ¡ideal para responsive!</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-teal-600">auto-fill / auto-fit</h4>
+                                <p>Permite al navegador decidir cuántas columnas caben en el espacio.</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-teal-600">grid-template-areas</h4>
+                                <p>Permite "dibujar" el layout de forma visual en el CSS.</p>
+                            </div>
+                             <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-teal-600">Atajos</h4>
+                                <p>Propiedades como `grid` y `grid-template` para escribir todo en una línea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="resumen" class="section-target mb-16">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-700">Resumen y Próximos Pasos</h2>
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                       <div class="grid md:grid-cols-2 gap-8">
+                           <div>
+                                <h3 class="text-2xl font-bold mb-4 text-teal-700">Lo que nos llevamos hoy</h3>
+                                <ul class="list-disc list-inside space-y-2 text-lg">
+                                    <li>Grid es para maquetación en <strong>2D</strong> (filas y columnas).</li>
+                                    <li>Todo empieza con <code class="font-mono text-sm bg-gray-200 p-1 rounded">display: grid</code>.</li>
+                                    <li>La unidad <code class="font-mono text-sm bg-gray-200 p-1 rounded">fr</code> es nuestra mejor amiga.</li>
+                                    <li>Usamos <code class="font-mono text-sm bg-gray-200 p-1 rounded">gap</code> para dar espacio fácilmente.</li>
+                                </ul>
+                           </div>
+                            <div>
+                               <h3 class="text-2xl font-bold mb-4 text-teal-700">Tarea / Próximo paso</h3>
+                               <p class="text-lg">¡Intenten replicar la estructura de una página simple (como un blog con header, sidebar, contenido y footer) usando lo que aprendimos hoy!</p>
+                           </div>
+                       </div>
+                    </div>
+                </section>
+                
+                <footer class="text-center mt-12 py-6 border-t">
+                    <p class="text-gray-600">¿Preguntas? ¡Es el momento!</p>
+                    <p class="text-gray-500 mt-2">Guía interactiva creada con ❤️ para la clase de Desarrollo Web.</p>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = [
+                { id: 'introduccion', title: 'Introducción' },
+                { id: 'que-es', title: '¿Qué es Grid?' },
+                { id: 'vocabulario', title: 'Vocabulario' },
+                { id: 'activar', title: 'Cómo Activar Grid' },
+                { id: 'ejemplos', title: 'Ejemplos Funcionales' },
+                { id: 'futuro', title: 'Vistazo al Futuro' },
+                { id: 'resumen', title: 'Resumen' }
+            ];
+
+            const navContainer = document.getElementById('desktop-nav');
+            sections.forEach(section => {
+                const link = document.createElement('a');
+                link.href = `#${section.id}`;
+                link.textContent = section.title;
+                link.classList.add('nav-link', 'block', 'px-4', 'py-2', 'rounded-md', 'text-gray-700', 'hover:bg-teal-100', 'transition-colors');
+                navContainer.appendChild(link);
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px', threshold: 0 });
+
+            document.querySelectorAll('.section-target').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>

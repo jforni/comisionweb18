@@ -1,0 +1,38 @@
+main {
+    min-height: 100vh;
+    width: 100%;
+    /* background-color: gray; */
+    background-image: url('https://wallpapers.com/images/featured/fondos-de-paisajes-naturales-k9tfch0hpfjbaxel.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    background-color: white;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+#decano {    
+    border-color: lightskyblue;
+}
+
+#instituto {
+    border-color: red;
+}
+
+#lagloria {
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEVSW-kq1NPfCowiTwEr6Z5XUwQQRgWo7flw&s');
+    background-size:auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
