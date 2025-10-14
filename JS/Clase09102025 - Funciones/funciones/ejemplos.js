@@ -55,10 +55,26 @@ console.log(sumar(45, 56)); */
 
 /* Funciones Arrow Function */
 /* const multiplicar = (a,b) => a * b;
-console.log(multiplicar(4, 6)); */
+
+const sumar = (a,b) => {
+    let suma = a + b;
+    return suma;
+}
+console.log(multiplicar(4, 6));
+console.log(sumar(5,45)); */
+
 
 /* Funciones anónimas y callbacks */
 
 /* setTimeout(function() {
     console.log('Ejecutado después de 2 segundos');
 }, 2000); */
+
+/* Callback Hell */
+/* pedirUsuario(1, function(usuario) {
+  pedirPosts(usuario.id, function(posts) {
+    pedirComentarios(posts[0].id, function(comentarios) {
+      console.log(comentarios);
+    });
+  });
+}); */

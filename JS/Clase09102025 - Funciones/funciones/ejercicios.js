@@ -46,12 +46,12 @@ function tablaMultiplicar(numero){
 tablaMultiplicar(num); */
 
 /* Definir una función que muestre información sobre una cadena de texto que se le pasa como argumento. A partir de la cadena que se le pasa, la función determina si esa cadena está formada sólo por mayúsculas, sólo por minúsculas o por una mezcla de ambas. */
-
+/* 
 let texto = prompt('Ingrese un texto: ');
 
 function analisisTexto(texto){
-    /* let textoMayusc = texto.toUpperCase();
-    let textoMinusc = texto.toLowerCase(); */
+    let textoMayusc = texto.toUpperCase();
+    let textoMinusc = texto.toLowerCase();
 
     if(!isNaN(texto)){
         alert('Ingresó un valor no válido!');
@@ -64,4 +64,69 @@ function analisisTexto(texto){
     }
 };
 
-analisisTexto(texto);
+analisisTexto(texto); */
+
+/* Arrow Function */
+
+/* Área de un Rectángulo: Crea una función calcularAreaRectangulo(alto, ancho) que devuelva el área. */
+
+/* let ancho = parseFloat(prompt('Ingrese el ancho del rectángulo: '));
+let alto = parseFloat(prompt('Ingrese el alto del rectángulo: '));
+let lado1 = parseFloat(prompt('Ingrese el ancho del rectángulo: '));
+let lado2 = parseFloat(prompt('Ingrese el alto del rectángulo: '));
+
+const areaRectangulo = (lado1, lado2) => {
+    let calculoArea = lado1 * lado2;
+    console.log(calculoArea);
+};
+
+areaRectangulo(ancho, alto);
+areaRectangulo(lado1, lado2); */
+
+/* Conversor de Moneda: Crea una función convertirEurosADolares(euros) que tome una cantidad en euros y devuelva su equivalente en dólares (usa un factor de conversión de, por ejemplo, $1$ euro $= 1.08$ dólares). */
+
+/* Realizar una página con un script que calcule el valor de la letra de un número de DNI (Documento nacional de identidad).
+
+El algoritmo para calcular la letra del dni es el siguiente :
+
+El número debe ser entre 0 y 99999999
+Debemos calcular el resto de la división entera entre el número y el número 23.
+Según el resultado, de 0 a 22, le corresponderá una letra de las siguientes:  (T, R, W, A, G, M, Y, F, P, D, X, B, N, J, Z, S, Q, V, H, L, C, K, E) 
+Si lo introducido no es un número deberá indicarse con un alert y volver a preguntar.
+Deberá de repetirse el proceso hasta que el usuario pulse «cancelar» */
+
+function calcularLetraDni() {
+    let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E']
+
+    do {
+        dni = prompt('Ingrese su número de documento: ');
+        if (isNaN(dni) || dni < 0 || dni > 99999999) {
+            alert('Ingreso un valor no válido');
+        } else {
+            let calculoResto = dni % 23;
+            console.log(calculoResto)
+            let letraDni = letras[calculoResto];
+            console.log(letraDni);
+        };
+    } while (dni != 'i');
+}
+
+calcularLetraDni()
+
+/* const letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+while (true) {
+  let dni = prompt("Introduce tu número de DNI (sin letra):");
+  if (dni === null) {
+    alert("se cancelo el programa");
+    break;
+  }
+  dni = Number(dni);
+  if (isNaN(dni) || dni < 0 || dni > 99999999) {
+    alert("ingresa un número válido entre 0 y 99.999.999.");
+    continue;
+  }
+  const resto = dni % 23;
+  const letra = letras[resto];
+ 
+  alert(`Número de DNI: ${dni}\nLetra del DNI: ${letra}`);
+} */
