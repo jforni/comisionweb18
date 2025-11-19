@@ -4,7 +4,7 @@ import '../styles/homePage.css'
 
 export default function HomePage() {
 
-    const [libros, setLibros] = useState([]);
+    let [libros, setLibros] = useState([]);
 
     function handleSubmitLibro(e) {
         e.preventDefault();
@@ -29,17 +29,32 @@ export default function HomePage() {
     }
 
     function ModificarLibro(id) {
-        const nuevosDatos = libros.map(libro => {
+        libros.map(libro => {
             if (libro.id === id) {
+                formGroupIdLibro.value = libro.id;
                 formGroupNombreLibro.value = libro.nombreLibro;
                 formGroupNombreAutor.value = libro.autorLibro;
                 formGroupNombreEditorial.value = libro.editorial;
                 formGroupCantStock.value = libro.cantStock;
                 formGroupDescripcion.value = libro.descripcion;
             };
-            
         });
+    };
 
+    function ActualizarLibro(e, id) {
+        e.preventDefault();
+        const nuevosLibros = libros.filter(libro => libro.id !== id);
+        libros = nuevosLibros;
+
+        const libro = {
+            id: formGroupIdLibro.value,
+            nombreLibro: formGroupNombreLibro.value,
+            autorLibro: formGroupNombreAutor.value,
+            editorial: formGroupNombreEditorial.value,
+            cantStock: formGroupCantStock.value,
+            descripcion: formGroupDescripcion.value,
+        };
+        setLibros([...libros, libro]);
     }
 
     function BorrarLibro(id) {
@@ -50,6 +65,10 @@ export default function HomePage() {
     return (
         <div>
             <Form onSubmit={handleSubmitLibro} id='formCargaLibro'>
+                <Form.Group className="mb-3" controlId="formGroupIdLibro">
+                    <Form.Label>ID del Libro</Form.Label>
+                    <Form.Control type="text" placeholder='0' disabled/>
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupNombreLibro">
                     <Form.Label>Nombre del Libro</Form.Label>
                     <Form.Control type="text" placeholder="Ingrese el Nombre del libro..." />
@@ -71,6 +90,7 @@ export default function HomePage() {
                     <Form.Control as="textarea" rows={3} />
                 </Form.Group>
                 <Button type='submit' onClick={ModificarLibro} variant='success'>Cargar libro</Button>
+                <Button type='submit' onClick={ActualizarLibro} variant='primary'>Actualizar libro</Button>
 
             </Form>
             <hr />
