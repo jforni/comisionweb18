@@ -1,0 +1,51 @@
+/* 1. Una persona con nombre, edad y es_estudiante. */
+
+{
+    "nombre": "Nacho",
+    "edad": 56,
+    "es_estudiante": true
+}
+
+/* 2. Array de Strings: Tus tres colores favoritos. */
+
+{
+    "nombre": "Nacho",
+    "edad": 56,
+    "es_estudiante": true,
+    "color_fav": ["Azul", "Amarillo", "Celeste"]
+}
+
+/* 3. Objeto Anidado: Un contacto con un objeto direccion (calle, codigo_postal). */
+{
+    "nombre": "Nacho",
+    "edad": 56,
+    "es_estudiante": true,
+    "color_fav": ["Azul", "Amarillo", "Celeste"],
+    "direccion": {
+        "calle": {
+            "nombreCalle": "San Martín",
+            "numero": 258
+        },
+        "codigo_postal": 1925
+    }
+}
+
+/* 4. Array de Objetos: Un array productos con dos objetos (cada uno con id y nombre). */
+
+[
+    {
+        "id": 1,
+        "nombre": "Coca-Cola"
+    },
+    {
+        "id": 2,
+        "nombre": "Sprite"
+    }
+]
+
+/* 9. Validación de Sintaxis: Corrige este JSON */
+
+{ 
+    "ciudad": "Tokio", 
+    "población": 13900000, 
+}
