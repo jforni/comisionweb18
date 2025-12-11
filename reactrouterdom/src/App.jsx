@@ -15,10 +15,10 @@ function App() {
   const [auth, setAuth] = useState(false);
 
   function logIn() {
-    setAuth(true)
+    setAuth(true);
   }
 
-  function logOut() {
+  function logOut(){
     setAuth(false);
   }
 
@@ -26,18 +26,18 @@ function App() {
     <BrowserRouter>
       <HeaderComponent logIn={logIn} logOut={logOut} auth={auth}/>
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/about' element={<AboutPage />} />
-        <Route path='/contact' element={<ContactPage />} />
-        <Route path='/turnos' element={<TurnosPage />} />
+        <Route path='/' element={<HomePage/>}/>
+        <Route path='/about' element={<AboutPage/>}/>
+        <Route path='/contact' element={<ContactPage/>}/>
+        <Route path='/turnos' element={<TurnosPage/>}/>
         <Route path='/admin' element={
           <ProtectedRoutes auth={auth}>
-            <AdminPage />
+            <AdminPage/>
           </ProtectedRoutes>
-        } />
-        <Route path='*' element={<ErrorPage />} />
+        }/>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
-
+      
     </BrowserRouter>
   )
 }

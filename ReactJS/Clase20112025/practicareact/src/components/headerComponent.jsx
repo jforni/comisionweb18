@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Container, Nav, Navbar, NavDropdown, Button, Modal } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom';
 
-export default function HeaderComponent() {
+export default function HeaderComponent({logInAdmin, logOutAdmin, authAdmin}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,22 +15,25 @@ export default function HeaderComponent() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Button variant="primary" onClick={handleShow}>
-                            Launch demo modal
-                        </Button>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
+                        <NavLink to='/'>Home</NavLink>
+                        <NavDropdown title="Masculino" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Camisas</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Remeras</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Pantalones</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">Ropa interior</NavDropdown.Item>
                         </NavDropdown>
+                        <NavLink to='/about'>About Us</NavLink>
+                        <NavLink to='/contact'>Contact Us</NavLink>
+                        {
+                            authAdmin && (<NavLink to='/admin'>Admin</NavLink>)
+                        }
+                        <Button className='btn btn-outline-light' onClick={()=> authAdmin ? logOutAdmin() : logInAdmin()}>
+                            {authAdmin ? 'LogOut' : 'LogIn'}
+                        </Button>
                     </Nav>
+                    {/* <Button variant="primary" onClick={handleShow}>
+                        Launch demo modal
+                    </Button> */}
                 </Navbar.Collapse>
             </Container>
 

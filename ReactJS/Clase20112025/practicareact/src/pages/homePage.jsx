@@ -15,7 +15,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <CarruselComponent />
+            {/* <CarruselComponent /> */}
             <CardGroupComponent articulos={productos} />
         </div>
     )
