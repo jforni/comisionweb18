@@ -1,9 +1,9 @@
-const url = "http://localhost:3000/api/categorias";
+const url = "http://localhost:3000/api/productos";
 
 /* const token = JSON.parse(localStorage.getItem("token")); */
 const limite = 6;
 
-export const getCategorias = async (desde=0) => {
+export const getProductos = async (desde=0) => {
     try {
         const resp = await fetch(url + "?limite=" + limite + "&desde= " + desde, {
             method: "GET",
@@ -21,7 +21,7 @@ export const getCategorias = async (desde=0) => {
     }
 }
 
-export const getCategoriaById = async (id) => {
+export const getProductoById = async (id) => {
     try {
         const resp = await fetch(url + "/" + id, {
             method: "GET",
@@ -39,7 +39,7 @@ export const getCategoriaById = async (id) => {
     }
 }
 
-export const crearCategoria = async (datos) => {
+export const crearProducto = async (datos) => {
     try {
         const resp = await fetch(url, {
             method: "POST",
@@ -59,7 +59,7 @@ export const crearCategoria = async (datos) => {
     }
 }
 
-export const actualizarCategoria = async (id, datos) => {
+export const actualizarProducto = async (id, datos) => {
   try {
     const resp = await fetch(url + "/" + id, {
       method: "PUT",
@@ -79,7 +79,7 @@ export const actualizarCategoria = async (id, datos) => {
   }
 };
 
-export const borrarCategoria = async (id) => {
+export const borrarProducto = async (id) => {
   try {
     const resp = await fetch(url + "/" + id, {
       method: "DELETE",
